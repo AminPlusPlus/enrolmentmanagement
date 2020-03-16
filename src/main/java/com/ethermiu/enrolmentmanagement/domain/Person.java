@@ -1,7 +1,12 @@
 package com.ethermiu.enrolmentmanagement.domain;
 
+import javax.persistence.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public  class Person {
+    @Id
+    @GeneratedValue
     private int id;
     private String name;
     private String username;
