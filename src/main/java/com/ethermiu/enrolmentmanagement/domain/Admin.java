@@ -1,4 +1,5 @@
 package com.ethermiu.enrolmentmanagement.domain;
 
-public class Default {
+public class Admin extends Person {
+
 }
