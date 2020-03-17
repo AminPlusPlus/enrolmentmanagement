@@ -13,8 +13,8 @@ public class Student extends Person {
     @JoinColumn(name = "student_id")
     List<Address> addresses = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "studentList")
-    private Section section;
+    //@ManyToMany(mappedBy = "studentList")
+    //private Section section;
 
     public String getStudentId() {
         return studentId;
@@ -41,13 +41,13 @@ public class Student extends Person {
         this.addresses = addresses;
     }
 
-    public Section getSection() {
-        return section;
-    }
-
-    public void setSection(Section section) {
-        this.section = section;
-    }
+//    public Section getSection() {
+//        return section;
+//    }
+//
+//    public void setSection(Section section) {
+//        this.section = section;
+//    }
 
 
 }
