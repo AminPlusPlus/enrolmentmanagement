@@ -1,11 +1,16 @@
 package com.ethermiu.enrolmentmanagement.domain;
 
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Offering {
     @Id
     @GeneratedValue
@@ -20,46 +25,5 @@ public class Offering {
 
     @OneToMany(mappedBy = "offering")
     List<Section> sectionList = new ArrayList<>();
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public Block getBlock() {
-        return block;
-    }
-
-    public void setBlock(Block block) {
-        this.block = block;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
-    public List<Section> getSectionList() {
-        return sectionList;
-    }
-
-    public void setSectionList(List<Section> sectionList) {
-        this.sectionList = sectionList;
-    }
-
 
 }
