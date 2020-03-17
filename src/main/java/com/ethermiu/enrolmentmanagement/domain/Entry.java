@@ -14,8 +14,7 @@ public class Entry {
     private Date startDate;
     private Date enrollmentStartDate;
     private Date enrollmentEndDate;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "entry_id")
+    @OneToMany(mappedBy = "entry")
     private List<Student> students = new ArrayList<>();
 
 

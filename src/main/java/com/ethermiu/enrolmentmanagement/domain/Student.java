@@ -16,6 +16,10 @@ public class Student extends Person {
     @ManyToMany(mappedBy = "studentList")
     private List<Section> sections;
 
+    @ManyToOne
+    @JoinColumn(name = "entry_id")
+    private Entry entry;
+
     public String getStudentId() {
         return studentId;
     }
