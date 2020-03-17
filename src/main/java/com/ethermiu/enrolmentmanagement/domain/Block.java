@@ -27,3 +27,5 @@ public class Block {
     @OneToMany(mappedBy = "block")
     List<Offering> offeringList;
     }
+}
+
