@@ -18,8 +18,7 @@ public class Student extends Person {
     @JoinColumn(name = "student_id")
     List<Address> addresses = new ArrayList<>();
 
-    //@ManyToMany(mappedBy = "studentList")
-    //private Section section;
-
+    @ManyToMany(mappedBy = "studentList")
+    private List<Section> sections;
 
 }

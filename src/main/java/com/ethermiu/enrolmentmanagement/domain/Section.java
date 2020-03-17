@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "secton")
 public class Section {
     @Id
     @GeneratedValue
@@ -23,9 +24,9 @@ public class Section {
 
     @ManyToMany
     @JoinTable(name = "Enrollment",
-        joinColumns = { @JoinColumn(name = "section_id") },
-        inverseJoinColumns = { @JoinColumn(name = "student_id") } )
-    List<Student> studentList = new ArrayList<Student>();
+            joinColumns = { @JoinColumn(name = "section_id") },
+            inverseJoinColumns = { @JoinColumn(name = "student_id") } )
+    List<Student> studentList = new ArrayList<>();
 
 
 }
