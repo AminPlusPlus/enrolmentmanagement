@@ -10,5 +10,4 @@ public class EnrolmentManagementApplication {
         SpringApplication.run(EnrolmentManagementApplication.class, args);
         System.out.println("Testing Application");
     }
-
 }
