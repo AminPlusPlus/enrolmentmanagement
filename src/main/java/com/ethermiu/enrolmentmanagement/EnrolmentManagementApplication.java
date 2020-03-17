@@ -8,7 +8,7 @@ public class EnrolmentManagementApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EnrolmentManagementApplication.class, args);
-        System.out.println("Testing ");
+        System.out.println("Testing Application");
     }
 
 }
