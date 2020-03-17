@@ -84,4 +84,5 @@ public class Block {
     public void setOfferingList(List<Offering> offeringList) {
         this.offeringList = offeringList;
     }
+
 }

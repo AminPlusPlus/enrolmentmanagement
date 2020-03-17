@@ -57,4 +57,5 @@ public class Course {
     public void setOfferingList(List<Offering> offeringList) {
         this.offeringList = offeringList;
     }
+
 }
