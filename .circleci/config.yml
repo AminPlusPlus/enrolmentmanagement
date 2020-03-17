@@ -4,6 +4,10 @@ jobs:
   build:
     docker:
       - image: 'circleci/openjdk:11-jdk'
+        environment:
+          DB_URL : db_url
+          DB_USER : db_user
+          DB_PASSWORD : db_paswd
     steps:
       - checkout
       - run:
