@@ -24,3 +24,5 @@ public class Course {
     List<Offering> offeringList;
 
     }
+
+

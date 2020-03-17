@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Address {
     @Id
     @GeneratedValue
@@ -21,6 +20,8 @@ public class Address {
     private String country;
     private String type;
 
+    public Address() {
+    }
 
     public Address(String street, String city, String postalCode, String country) {
         this.street = street;
