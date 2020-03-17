@@ -26,5 +26,4 @@ public class Offering {
     @OneToMany(mappedBy = "offering")
     List<Section> sectionList = new ArrayList<>();
 
-
 }

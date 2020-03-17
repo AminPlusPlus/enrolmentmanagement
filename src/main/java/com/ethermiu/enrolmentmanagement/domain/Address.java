@@ -21,9 +21,6 @@ public class Address {
     private String country;
     private String type;
 
-    @ManyToOne(optional = false)
-    private Student students;
-
 
     public Address(String street, String city, String postalCode, String country) {
         this.street = street;
@@ -31,8 +28,6 @@ public class Address {
         this.postalCode = postalCode;
         this.country = country;
     }
-
-
 
 
 }
