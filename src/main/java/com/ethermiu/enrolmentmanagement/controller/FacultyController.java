@@ -25,7 +25,7 @@ public class FacultyController {
     @ApiOperation(value = "Get Student By Id")
     @GetMapping("students/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable("id") Long id){
-        if (!service.studentExist(id)) {
+        if (service.studentExist(id)) {
             Student student = service.getStudentById(id);
             return new ResponseEntity<Student>(student, HttpStatus.OK);
         }
