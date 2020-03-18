@@ -2,7 +2,6 @@ package com.ethermiu.enrolmentmanagement.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,18 +17,14 @@ public class Offering {
     @GeneratedValue
     private int id;
     private String code;
-
-
     @ManyToOne
     @JoinColumn(name = "block_id")
     private Block block;
-
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
-
-    @OneToMany(mappedBy = "offering",cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    @OneToMany(mappedBy = "offering")
     List<Section> sectionList = new ArrayList<>();
 
 }
