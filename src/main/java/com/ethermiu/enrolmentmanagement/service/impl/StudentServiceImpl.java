@@ -32,7 +32,7 @@ public class StudentServiceImpl implements StudentService {
     public void update(Long id,Student student) {
        Student student1 = studentRepository.getOne(id);
        if (student1==null){
-           throw  new IllegalArgumentException("Not Able to Find student With this Id");
+           throw  new IllegalArgumentException("Not Able to Find student With this id");
        }
        else {
            student1=student;
