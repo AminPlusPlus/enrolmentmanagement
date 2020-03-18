@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,9 +17,9 @@ public class Entry {
     @GeneratedValue
     private Long id;
     private String name;
-    private Date startDate;
-    private Date enrollmentStartDate;
-    private Date enrollmentEndDate;
+    private LocalDate startDate;
+    private LocalDate enrollmentStartDate;
+    private LocalDate enrollmentEndDate;
     @OneToMany(mappedBy = "entry")
     private List<Student> students = new ArrayList<>();
 

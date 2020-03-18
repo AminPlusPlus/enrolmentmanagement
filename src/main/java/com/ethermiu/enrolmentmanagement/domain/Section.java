@@ -15,18 +15,17 @@ public class Section {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "offering_id")
     private Offering offering;
-
-    @ManyToMany
-    @JoinTable(name = "Enrollment",
-            joinColumns = { @JoinColumn(name = "section_id") },
-            inverseJoinColumns = { @JoinColumn(name = "student_id") } )
+    @ManyToMany(mappedBy = "sections",cascade = CascadeType.ALL)
     List<Student> studentList = new ArrayList<>();
 
-
+    public Section(Faculty faculty, Offering offering) {
+        this.faculty = faculty;
+        this.offering = offering;
+    }
 }

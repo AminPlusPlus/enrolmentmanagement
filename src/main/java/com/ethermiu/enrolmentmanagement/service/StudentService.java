@@ -14,4 +14,5 @@ public interface StudentService {
     void delete(Student student);
     List<Offering> getStuOffering(Long id);
     void updateEnrolment(Long id, Section section);
+    void addEnrolment(Long id ,Long sectionId);
 }

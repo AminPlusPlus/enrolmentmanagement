@@ -4,6 +4,7 @@ import com.ethermiu.enrolmentmanagement.domain.Offering;
 import com.ethermiu.enrolmentmanagement.domain.Section;
 import com.ethermiu.enrolmentmanagement.domain.Student;
 import com.ethermiu.enrolmentmanagement.repository.OfferingRepository;
+import com.ethermiu.enrolmentmanagement.repository.Sectionrepositry;
 import com.ethermiu.enrolmentmanagement.repository.StudentRepository;
 import com.ethermiu.enrolmentmanagement.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,45 +20,52 @@ public class StudentServiceImpl implements StudentService {
     StudentRepository studentRepository;
     @Autowired
     OfferingRepository offeringRepository;
+    @Autowired
+    Sectionrepositry sectionrepositry;
 
     @Override
     public void create(Student student) {
         studentRepository.save(student);
     }
 
-    public void addEnrolment(Long id, Section section) {
+    @Override
+    public void addEnrolment(Long id, Long sectionId) {
         Student student = studentRepository.getOne(id);
+        Section newSection = sectionrepositry.getOne(sectionId);
 
-        for (Section sec : student.getSections()) {
-            if (compareBlockDate(sec, section) == -1) {
-                throw new IllegalStateException("Block already Enrolled!");
-            }
-            if (sec.getOffering().getBlock().getCode().equals(section.getOffering().getBlock().getCode()))
-                throw new IllegalStateException("Course already Enrolled!");
-        }
-
-        if (section.getOffering().getBlock().getStartDate().compareTo(LocalDate.now()) < 0) {
-            throw new IllegalStateException("You cannot Enroll past Block!");
-        }
-
-        if (student.getSections().size() > 4) {
-            student.addSection(section);
+        if (validateInput(student, newSection)) {
+            student.addSection(newSection);
             studentRepository.flush();
-        } else throw new IllegalStateException("You cannot Enroll more than 4 times!");
+        }
     }
 
-    public int compareBlockDate(Section sec, Section section) {
-        if (sec.getOffering().getBlock().getEndDate().compareTo(section.getOffering().getBlock().getStartDate()) < 0) {
-            return 1;
-        } else if (sec.getOffering().getBlock().getEndDate().compareTo(section.getOffering().getBlock().getStartDate()) > 0) {
-            if (sec.getOffering().getCourse().getCode().equals(section.getOffering().getCourse().getCode()))
-                return -1;
+    private boolean validateInput(Student student, Section newSection) {
+
+        if (student.getSections().size() >= 4) {
+            return false;
         }
-        return -1;
+        if(student.getEntry().getEnrollmentStartDate().compareTo(LocalDate.now())<0||
+                LocalDate.now().compareTo(student.getEntry().getEnrollmentEndDate())>0)
+            return false;
+
+        for (Section sec : student.getSections()) {
+
+            if (sec.getOffering().getBlock().getId() == newSection.getOffering().getBlock().getId())
+                return false;
+
+            if (sec.getOffering().getCourse().getCode().equals(newSection.getOffering().getCourse().getCode()))
+                return false;
+        }
+
+        if (newSection.getOffering().getBlock().getStartDate().compareTo(LocalDate.now()) < 0) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
-    public List<Offering> getStuOffering(Long id){
+    public List<Offering> getStuOffering(Long id) {
         return offeringRepository.findStudentOffering(id);
     }
 
@@ -83,12 +91,19 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void updateEnrolment(Long id, Section section){
+    public void updateEnrolment(Long id, Section section) {
 
     }
+
     @Override
     public void delete(Student student) {
         studentRepository.delete(student);
     }
 
+
 }
+
+//        if (newSection.getOffering().getBlock().getStartDate().compareTo(student.getEntry().getEnrollmentStartDate()) < 0
+//                || newSection.getOffering().getBlock().getEndDate().compareTo(student.getEntry().getEnrollmentEndDate()) > 0) {
+//            return false;
+//        }

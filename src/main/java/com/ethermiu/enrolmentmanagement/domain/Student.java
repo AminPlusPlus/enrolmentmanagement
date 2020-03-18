@@ -9,7 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-
+//I made a change  changed in  the Student domain class i made Student the owner of the section.
 @Entity
 @Data
 @NoArgsConstructor
@@ -25,7 +25,11 @@ public class Student extends Person {
     @JoinColumn(name = "student_id")
     List<Address> addresses = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "studentList")
+
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "Enrollment",
+            joinColumns = {@JoinColumn(name = "student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "section_id")})
     private List<Section> sections;
 
     @ManyToOne
