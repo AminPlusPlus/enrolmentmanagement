@@ -19,8 +19,9 @@ public class Entry {
     private Date startDate;
     private Date enrollmentStartDate;
     private Date enrollmentEndDate;
-    @OneToMany(mappedBy = "entry")
-    private List<Student> students = new ArrayList<>();
+
+//    @OneToMany(mappedBy = "entry")
+//    private List<Student> students = new ArrayList<>();
 
 
 }
