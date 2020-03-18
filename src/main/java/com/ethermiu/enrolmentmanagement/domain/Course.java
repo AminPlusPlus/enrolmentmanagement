@@ -23,6 +23,6 @@ public class Course {
     @OneToMany(mappedBy = "course")
     List<Offering> offeringList;
 
-    }
+}
 
 
