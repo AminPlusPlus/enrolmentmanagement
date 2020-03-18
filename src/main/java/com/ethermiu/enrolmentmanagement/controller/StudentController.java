@@ -13,6 +13,7 @@ import com.ethermiu.enrolmentmanagement.service.impl.StudentServiceImpl;
 import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,22 +35,26 @@ public class StudentController {
 
 
     @PostMapping("student")
-    public void createStudent(@RequestBody Student student) {
+    public ResponseEntity<String> createStudent(@RequestBody Student student) {
         try {
             service.create(student);
         } catch (Exception ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Bad Request");
         }
+         return new ResponseEntity<>("Student Successfully created", HttpStatus.OK);
+
     }
 
     @PutMapping("/{id}/update")
-    public void updateStudent(@PathParam("id") Long id, @RequestBody Student student) {
+    public ResponseEntity<String> updateStudent(@PathParam("id") Long id, @RequestBody Student student) {
         try {
 
             service.update(id, student);
         } catch (Exception ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Bad Request");
         }
+        return new ResponseEntity<>("Student input updated Successfully", HttpStatus.OK);
+
     }
 
     @GetMapping("/getAll")
@@ -67,16 +72,17 @@ public class StudentController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) {
+    public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         try {
             service.delete(service.getStudentById(id));
         } catch (Exception ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Bad Request");
         }
+        return new ResponseEntity<>("Student deleted updated", HttpStatus.OK);
     }
 
-    @PostMapping("/{id}/addEnrollment")
-    public void addEnrollment(@PathVariable("id") Long id, @RequestParam(value = "sectionId") Long sectionId) {
+    @PostMapping("/{id}/addEnrollment/{sectionId}")
+    public ResponseEntity<String> addEnrollment(@PathVariable("id") Long id, @PathVariable("sectionId") Long sectionId) {
 
         try {
             service.addEnrolment(id, sectionId);
@@ -84,6 +90,8 @@ public class StudentController {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Bad Request", ex);
         }
+
+        return new ResponseEntity<>("Enrolment added Successfully", HttpStatus.OK);
     }
 
     @ExceptionHandler(value = NoSuchResourceException.class)

@@ -45,7 +45,7 @@ public class StudentServiceImpl implements StudentService {
             return false;
         }
         if(student.getEntry().getEnrollmentStartDate().compareTo(LocalDate.now())<0||
-                LocalDate.now().compareTo(student.getEntry().getEnrollmentEndDate())>0)
+                LocalDate.now().compareTzo(student.getEntry().getEnrollmentEndDate())>0)
             return false;
 
         for (Section sec : student.getSections()) {
