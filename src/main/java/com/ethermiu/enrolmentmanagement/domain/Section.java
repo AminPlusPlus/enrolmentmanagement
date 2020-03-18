@@ -14,7 +14,7 @@ import java.util.List;
 public class Section {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;

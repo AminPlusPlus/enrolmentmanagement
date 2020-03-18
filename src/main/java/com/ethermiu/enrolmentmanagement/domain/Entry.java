@@ -14,7 +14,7 @@ import java.util.List;
 public class Entry {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String name;
     private Date startDate;
     private Date enrollmentStartDate;
