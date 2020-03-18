@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FacultyServiceImpl implements FacultyService {
@@ -15,6 +16,9 @@ public class FacultyServiceImpl implements FacultyService {
 
     public Student getStudentById(Long id) {
         return studentRepository.findById(id).get();
+    }
+    public boolean studentExist(Long id) {
+        return studentRepository.existsById(id);
     }
     public List<Student> getAllStudent() {
         return studentRepository.findAll();

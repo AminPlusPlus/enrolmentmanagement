@@ -2,16 +2,14 @@ package com.ethermiu.enrolmentmanagement.controller;
 
 import com.ethermiu.enrolmentmanagement.domain.Student;
 import com.ethermiu.enrolmentmanagement.service.StudentService;
-import com.ethermiu.enrolmentmanagement.service.impl.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("v1/student")
+@RequestMapping("api/v1/student")
 public class StudentController {
     @Autowired
     StudentService service;
