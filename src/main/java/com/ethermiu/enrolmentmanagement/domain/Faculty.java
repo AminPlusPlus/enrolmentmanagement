@@ -1,5 +1,6 @@
 package com.ethermiu.enrolmentmanagement.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class Faculty extends Person {
 
     private String title;
+    @JsonIgnore
     @OneToMany(mappedBy = "faculty")
     private List<Section> sections = new ArrayList<>();
 
