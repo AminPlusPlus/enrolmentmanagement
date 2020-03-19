@@ -22,7 +22,7 @@ public class Student extends Person {
     private String studentId;
     @Email
     private String email;
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     List<Address> addresses = new ArrayList<>();
 
