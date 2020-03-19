@@ -20,10 +20,10 @@ public class Offering {
     @ManyToOne
     @JoinColumn(name = "block_id")
     private Block block;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
     @JsonIgnore
-    @OneToMany(mappedBy = "offering")
+    @OneToMany(mappedBy = "offering",cascade = CascadeType.ALL)
     List<Section> sectionList = new ArrayList<>();
 }
