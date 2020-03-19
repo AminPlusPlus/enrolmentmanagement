@@ -7,12 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/faculty")
+@RequestMapping("api/v1/faculty")
 public class FacultyController {
     @Autowired
     FacultyService service;
@@ -27,10 +25,10 @@ public class FacultyController {
     public ResponseEntity<?> getStudentById(@PathVariable("id") Long id){
         if (service.studentExist(id)) {
             Student student = service.getStudentById(id);
-            return new ResponseEntity<Student>(student, HttpStatus.OK);
+            return new ResponseEntity<>(student, HttpStatus.OK);
         }
         else {
-            return new ResponseEntity<String>("User doesn't exist", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("User doesn't exist", HttpStatus.BAD_REQUEST);
         }
     }
 

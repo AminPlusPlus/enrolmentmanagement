@@ -24,7 +24,6 @@ public class Offering {
     @JoinColumn(name = "course_id")
     private Course course;
     @JsonIgnore
-    @OneToMany(mappedBy = "offering")
+    @OneToMany(mappedBy = "offering",cascade = CascadeType.ALL)
     List<Section> sectionList = new ArrayList<>();
-
 }

@@ -3,6 +3,7 @@ package com.ethermiu.enrolmentmanagement.config;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -14,6 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
+@EnableJpaRepositories(basePackages = "com.ethermiu.enrolmentmanagement.repository")
 public class SwaggerConfig {
     @Bean
     public Docket api(){
@@ -27,7 +29,7 @@ public class SwaggerConfig {
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("MIU Enrollment Management REST API")
                 .description("Rest Api")
-                .contact(new Contact("Ether", "", ""))
+                .contact(new Contact("Ether", "___", "aabdullozoda@miu.edu"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.0.0")
