@@ -5,7 +5,7 @@ import com.ethermiu.enrolmentmanagement.domain.Student;
 import java.util.List;
 
 public interface FacultyService {
-    public Student getStudentById(Long id);
-    public List<Student> getAllStudent();
-    public boolean studentExist(Long id);
+     Student getStudentById(Long id);
+     List<Student> getAllStudent();
+     boolean studentExist(Long id);
 }
