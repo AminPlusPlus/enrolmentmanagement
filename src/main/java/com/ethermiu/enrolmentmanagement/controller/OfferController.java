@@ -4,14 +4,12 @@ import com.ethermiu.enrolmentmanagement.domain.*;
 import com.ethermiu.enrolmentmanagement.service.Blockservice;
 import com.ethermiu.enrolmentmanagement.service.CourseService;
 import com.ethermiu.enrolmentmanagement.service.OfferService;
-import com.ethermiu.enrolmentmanagement.service.SectionService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+
 
 @RestController
 @RequestMapping("api/v1/offers")
@@ -41,8 +39,32 @@ public class OfferController {
         return offerService.getAll();
     }
 
-//    @ApiOperation(value = "Delete Offer By Id")
-//    @DeleteMapping(value = "{id}")
-//    public Offering deleteOffer
+    @ApiOperation(value = "Delete Offer By Id")
+    @DeleteMapping(value = "{id}")
+    public void deleteOffer(@PathVariable Long id){
+        this.offerService.deleteOfferById(id);
+    }
+
+    @ApiOperation(value = "Delete Offer By Code")
+    @DeleteMapping
+    public Offering deleteOffer(@RequestParam(value="Code") String code){
+        return this.offerService.deleteOfferByCode(code);
+    }
+
+
+    @ApiOperation(value = "Update Block By Id")
+    @PatchMapping (value = "{offerId}/{blockId}")
+    public Offering updateBlock(@PathVariable Long offerId,@PathVariable Long blockId){
+        Block block = blockservice.findById(blockId);
+        return this.offerService.updateBlock(offerId,block);
+    }
+
+    @ApiOperation(value = "Update Course By Id")
+    @PatchMapping (value = "{offerId}/{courseId}")
+    public Offering updateCourse(@PathVariable Long offerId,@PathVariable Long courseId){
+        Course course = courseService.findById(courseId);
+        return this.offerService.updateCourse(offerId,course);
+    }
+
 
 }
