@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
@@ -24,8 +22,8 @@ public class Block {
     private Date startDate;
     private Date endDate;
 
-    @OneToMany(mappedBy = "block")
-    List<Offering> offeringList;
-    }
+
+
+}
 
 

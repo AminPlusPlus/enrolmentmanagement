@@ -1,6 +1,7 @@
 package com.ethermiu.enrolmentmanagement.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,8 +23,7 @@ public class Offering {
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
-
-    @OneToMany(mappedBy = "offering")
+    @JsonIgnore
+    @OneToMany(mappedBy = "offering",cascade = CascadeType.ALL)
     List<Section> sectionList = new ArrayList<>();
-
 }
