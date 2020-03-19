@@ -9,5 +9,5 @@ public interface FacultyService {
      Student getStudentById(Long id);
      List<Student> getAllStudent();
      boolean studentExist(Long id);
-     boolean getFacultyById(Long id);
+     Faculty getFacultyById(Long id);
 }

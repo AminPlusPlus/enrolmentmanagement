@@ -31,5 +31,8 @@ public class Section {
             inverseJoinColumns = { @JoinColumn(name = "student_id") } )
     List<Student> studentList = new ArrayList<>();
 
-
+    public Section(Faculty f,Offering of){
+        this.faculty=f;
+        this.offering=of;
+    }
 }

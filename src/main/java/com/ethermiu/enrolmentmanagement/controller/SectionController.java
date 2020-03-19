@@ -1,8 +1,8 @@
 package com.ethermiu.enrolmentmanagement.controller;
 
-import com.ethermiu.enrolmentmanagement.domain.Course;
-import com.ethermiu.enrolmentmanagement.domain.Section;
+import com.ethermiu.enrolmentmanagement.domain.*;
 import com.ethermiu.enrolmentmanagement.service.FacultyService;
+import com.ethermiu.enrolmentmanagement.service.OfferService;
 import com.ethermiu.enrolmentmanagement.service.SectionService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,8 @@ public class SectionController {
     @Autowired
     private FacultyService facultyService;
     //Create an Offering Service here
+    @Autowired
+    private OfferService offerService;
 
     @ApiOperation(value = "Get all Sections")
     @GetMapping
@@ -29,6 +31,7 @@ public class SectionController {
     {
         return sectionService.getAllSection();
     }
+
     @ApiOperation(value = "Get Section by id")
     @GetMapping(value = "/{id}")
     public Section findsectionbyid(@PathVariable Long id) {
@@ -51,14 +54,26 @@ public class SectionController {
 
     @ApiOperation(value = "Create Section")
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> AddSection(@RequestBody Map<String,Long> sectiondata) {
-         if(sectionService.createSection(sectiondata)){
-             return new ResponseEntity<>(HttpStatus.OK);
-         }
-         else
-         {
-             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-         }
+    public ResponseEntity<?> AddSection(@RequestBody Sect sect) {
+         //Fetching services of Faculty and Offerings
+        try {
+            Faculty faculty = facultyService.getFacultyById(sect.getFacultyid());
+            Offering offering = offerService.findById(sect.getOfferingid());
+            if (faculty != null && offering != null) {
+                Section response = sectionService.createSection(faculty, offering);
+                return new ResponseEntity<Section>(response, HttpStatus.OK);
+            } else {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("message", "Either Faculty code or Offering code does not exist");
+                return new ResponseEntity<HashMap<String, String>>(map, HttpStatus.BAD_REQUEST);
+            }
+        }
+        catch (Exception ex){
+            System.out.println("Exception encountered in Add Section");
+            HashMap<String, String> map = new HashMap<>();
+            map.put("message", "Either Faculty code or Offering code does not exist");
+            return new ResponseEntity<HashMap<String, String>>(map, HttpStatus.BAD_REQUEST);
+        }
 
     }
 //
