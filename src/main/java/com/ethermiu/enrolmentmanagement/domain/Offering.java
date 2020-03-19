@@ -18,7 +18,7 @@ public class Offering {
     private int id;
     private String code;
     //@JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "block_id")
     private Block block;
     @ManyToOne

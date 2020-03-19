@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface Blockservice {
 
-    public Block insertData(Block input);
-    public List<Block> getallBlocks();
-    public boolean deleteById(Long id);
-    public void deleteByCode(String code);
-
-    public Block update(Block block);
+     Block insertData(Block input);
+     List<Block> getallBlocks();
+     void deleteById(Long id);
+     void deleteByCode(String code);
+     Block update(Block block);
+     boolean isexistByid(Long id);
 }

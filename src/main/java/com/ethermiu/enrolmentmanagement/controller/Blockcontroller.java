@@ -4,6 +4,7 @@ import com.ethermiu.enrolmentmanagement.domain.Block;
 import com.ethermiu.enrolmentmanagement.domain.Student;
 import com.ethermiu.enrolmentmanagement.service.Blockservice;
 import io.swagger.annotations.ApiOperation;
+import org.aspectj.bridge.IMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -39,18 +41,23 @@ public class Blockcontroller {
     @ApiOperation(value = "Get All")
     @GetMapping(value = "/All")
     public List<Block> getallBlocks(){
-        return (List<Block>) blockservice.getallBlocks();
+        return  blockservice.getallBlocks();
     }
 
     @ApiOperation(value = "Delete Block By Id")
     @GetMapping("/{id}/delete")
-    public ResponseEntity<Block> deleteById(@PathVariable("id") Long id){
+    public ResponseEntity<?> deleteById(@PathVariable("id") Long id){
         try {
-            boolean result=blockservice.deleteById(id);
-            if (result==true)
-            return new ResponseEntity<Block>(HttpStatus.OK);
-            else
-                return new ResponseEntity<Block>(HttpStatus.BAD_REQUEST);
+            if(blockservice.isexistByid(id)){
+                blockservice.deleteById(id);
+                return new ResponseEntity<Block>(HttpStatus.OK);
+            }
+            else{
+                HashMap<String,String> map=new HashMap<>();
+                map.put("message","id does,nt exist");
+                return new ResponseEntity<HashMap<String,String>>(map,HttpStatus.BAD_REQUEST);
+            }
+
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());

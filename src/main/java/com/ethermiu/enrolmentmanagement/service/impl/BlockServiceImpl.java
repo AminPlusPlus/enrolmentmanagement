@@ -23,14 +23,8 @@ public class BlockServiceImpl implements Blockservice {
     }
 
     @Override
-    public boolean deleteById(Long id) {
-       boolean response= blockrepo.existsById(id);
-       if (response==false)
-           return response;
-       else {
+    public void deleteById(Long id) {
            blockrepo.deleteById(id);
-           return true;
-       }
     }
 
     @Override
@@ -41,6 +35,11 @@ public class BlockServiceImpl implements Blockservice {
     @Override
     public Block update(Block block) {
        return blockrepo.save(block);
+    }
+
+    @Override
+    public boolean isexistByid(Long id) {
+        return blockrepo.existsById(id);
     }
 
 
