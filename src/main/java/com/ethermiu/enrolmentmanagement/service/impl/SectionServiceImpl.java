@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SectionServiceImpl implements SectionService {
@@ -23,8 +24,8 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
-    public Section save(Section section) {
-        return sectionRepository.save(section);
+    public boolean createSection(Map<String, Long> sectiondata) {
+        return false;
     }
 
     @Override

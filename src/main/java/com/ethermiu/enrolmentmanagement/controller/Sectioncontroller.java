@@ -2,6 +2,7 @@ package com.ethermiu.enrolmentmanagement.controller;
 
 import com.ethermiu.enrolmentmanagement.domain.Course;
 import com.ethermiu.enrolmentmanagement.domain.Section;
+import com.ethermiu.enrolmentmanagement.service.FacultyService;
 import com.ethermiu.enrolmentmanagement.service.SectionService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ import java.util.Map;
 public class Sectioncontroller {
     @Autowired
     private SectionService sectionService;
+    @Autowired
+    private FacultyService facultyService;
+    //Create an Offering Service here
 
     @ApiOperation(value = "Get all Sections")
     @GetMapping
@@ -45,15 +49,22 @@ public class Sectioncontroller {
         return new ResponseEntity(message,HttpStatus.BAD_REQUEST);
     }
 
-    @ApiOperation(value = "Add Section")
+    @ApiOperation(value = "Create Section")
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public Section AddSection(@RequestBody Section section) {
-        return sectionService.save(section);
-    }
+    public ResponseEntity<?> AddSection(@RequestBody Map<String,Long> sectiondata) {
+         if(sectionService.createSection(sectiondata)){
+             return new ResponseEntity<>(HttpStatus.OK);
+         }
+         else
+         {
+             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+         }
 
-    @ApiOperation(value = "Section update")
-    @PutMapping(consumes = "application/json", produces = "application/json")
-    public Section update(@RequestBody Section section) {
-        return sectionService.update(section);
     }
+//
+//    @ApiOperation(value = "Section update")
+//    @PutMapping(consumes = "application/json", produces = "application/json")
+//    public Section update(@RequestBody Section section) {
+//        return sectionService.update(section);
+//    }
 }
