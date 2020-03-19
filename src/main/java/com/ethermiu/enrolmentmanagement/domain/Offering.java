@@ -15,7 +15,7 @@ import java.util.Set;
 @Data
 public class Offering {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String code;
     @ManyToOne
@@ -32,10 +32,25 @@ public class Offering {
     public Offering() {
     }
 
-    public Offering(String code, Block block, Course course, Set<Section> section) {
+    public Offering(String code, Block block, Course course) {
         this.code = code;
         this.block = block;
         this.course = course;
-        this.sectionList =  section;
+    }
+
+    public Block getBlock() {
+        return block;
+    }
+
+    public void setBlock(Block block) {
+        this.block = block;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

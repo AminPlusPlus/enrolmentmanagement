@@ -6,16 +6,14 @@ import com.ethermiu.enrolmentmanagement.domain.Offering;
 import com.ethermiu.enrolmentmanagement.domain.Section;
 
 import java.util.List;
-import java.util.Set;
-
-//offers/1/sections
-
 
 public interface OfferService {
     List<Offering> getAll();
-    Offering createOffer(String code, Block block, Course course, Set<Section> section);
-    Section addSection(Long idOffer,Section section);
-    Section removeSection(Long offerId ,Long sectionId);
+    Offering findById(Long id);
+    Boolean existById(Long id);
+    Offering createOffer(String code, Block block, Course course);
+    Offering updateBlock(Long offerId,Block block);
+    Offering updateCourse(Long offerId,Course course);
     Offering deleteOfferById(Long id);
     Offering deleteOfferByCode(String code);
 }
