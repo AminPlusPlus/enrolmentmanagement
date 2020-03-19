@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/faculty")
+@RequestMapping("api/v1/faculties")
 public class FacultyController {
     @Autowired
     FacultyService service;
@@ -26,7 +26,7 @@ public class FacultyController {
 
     @ApiOperation(value = "Get Student By Id")
     @GetMapping("students/{id}")
-    public ResponseEntity<?> getStudentById(@PathVariable("id") Long id){
+    public ResponseEntity<?> getStudentById(@PathVariable Long id){
         if (service.studentExist(id)) {
             Student student = service.getStudentById(id);
             return new ResponseEntity<>(student, HttpStatus.OK);
@@ -37,7 +37,7 @@ public class FacultyController {
     }
     @ApiOperation(value = "Create a faculty", notes =
             "provide a faculty data without id")
-    @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public Faculty createFaculty(@Valid @RequestBody Faculty faculty) {
         return service.create(faculty);
     }
@@ -50,15 +50,15 @@ public class FacultyController {
 
     @ApiOperation(value = "get all faculties", notes = "" +
             "", response = ResponseEntity.class)
-    @GetMapping("/getAll")
+    @GetMapping
     public List<Faculty> getAll() {
         return service.getAllFaculty();
     }
 
     @ApiOperation(value = "get a faculty by Id", notes = "" +
             "provide an Id to look up the Data", response = ResponseEntity.class)
-    @GetMapping("/{id}")
-    public Faculty getBiId(@PathVariable("id") Long id) {
+    @GetMapping("/faculties/{id}")
+    public Faculty getBiId(@PathVariable Long id) {
         try {
             return service.getFacultyById(id).get();
         } catch (Exception ex) {
@@ -68,8 +68,8 @@ public class FacultyController {
 
     @ApiOperation(value = "Delete Faculty by Id", notes = "" +
             "provide an Id to Delete A Faculty", response = ResponseEntity.class)
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") Long id) {
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         try {
             service.delete(service.getFacultyById(id).get());
         } catch (Exception ex) {
