@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String code;
     private String name;

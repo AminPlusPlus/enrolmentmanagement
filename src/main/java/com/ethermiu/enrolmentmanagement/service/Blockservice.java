@@ -12,5 +12,6 @@ public interface Blockservice {
      void deleteById(Long id);
      void deleteByCode(String code);
      Block update(Block block);
-     boolean isexistByid(Long id);
+     boolean isExistById(Long id);
+     Block findById(Long id);
 }
