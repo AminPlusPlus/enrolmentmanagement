@@ -11,10 +11,8 @@ import com.ethermiu.enrolmentmanagement.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,15 +27,15 @@ public class StudentServiceImpl implements StudentService {
     Sectionrepositry sectionrepositry;
 
     @Override
-    public void create(Student student) {
-        studentRepository.save(student);
+    public Student create(Student student) {
+        return studentRepository.save(student);
     }
 
     @Override
     public void addEnrolment(Long id, Long sectionId) {
         System.out.println("am here");
         Student student = studentRepository.getOne(id);
-        Section newSection = sectionrepositry.getOne(sectionId);
+        Section newSection = sectionrepositry.getOne((long)sectionId);
         int i = validateInput(student, newSection);
 
         if (i == 0) {
@@ -64,8 +62,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void update(Student student) {
-        studentRepository.save(student);
+    public Student update(Student student) {
+        return studentRepository.save(student);
     }
 
     @Override

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,19 +27,18 @@ public class StudentController {
     FacultyRepository facultyRepository;
 
 
-    @ApiOperation(value = "Create a student", notes = "" +
-            "provide a student data without id", response = ResponseEntity.class)
-    @PostMapping("student")
-    public ResponseEntity<String> createStudent(@RequestBody Student student) {
-        try {
-            service.create(student);
-        } catch (Exception ex) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Bad Request");
-        }
-        return new ResponseEntity<>("Student Successfully created", HttpStatus.OK);
-
+    @ApiOperation(value = "Create a student", notes =
+            "provide a student data without id")
+    @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
+    public Student createStudent(@Valid @RequestBody Student student) {
+        return service.create(student);
     }
 
+    @ApiOperation(value = "Update Student")
+    @PutMapping(consumes = "application/json", produces = "application/json")
+    public Student update(@RequestBody Student student) {
+        return service.update(student);
+    }
     @ApiOperation(value = "Get Feature Courses of a student", notes =
             "provide student id", response = ArrayList.class)
     @GetMapping("/{id}/featureCourses")
@@ -80,15 +80,11 @@ public class StudentController {
             "provide an Id and section Id to add enrolment", response = ResponseEntity.class)
     @GetMapping("/{id}/addEnrollment/{sectionId}")
     public ResponseEntity<String> addEnrollment(@PathVariable("id") Long id, @PathVariable("sectionId") Long sectionId) {
-
-
         try {
             service.addEnrolment(id, sectionId);
-
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad Request");
         }
-
         return new ResponseEntity<>("Enrolment added Successfully", HttpStatus.OK);
     }
 
@@ -96,5 +92,7 @@ public class StudentController {
     public Exception handle(Exception e) {
         return e;
     }
+
+
 }
 

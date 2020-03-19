@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class Address {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String street;
     private String city;
     private String postalCode;

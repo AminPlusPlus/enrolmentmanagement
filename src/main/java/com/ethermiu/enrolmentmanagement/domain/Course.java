@@ -11,7 +11,6 @@ import java.util.List;
 
 @Entity
 @Data
-@Getter
 @NoArgsConstructor
 public class Course {
     @Id
@@ -21,9 +20,6 @@ public class Course {
     private String name;
     private String description;
 
-    public Long getId() {
-        return id;
-    }
 
     @JsonIgnore
     @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)

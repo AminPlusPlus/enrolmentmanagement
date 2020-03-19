@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface StudentService {
-    void create(Student student);
+    Student create(Student student);
     Optional<Student> getStudentById(Long id);
     List<Student> getAllStudent();
-    void update( Student student);
+    Student update( Student student);
     void delete(Student student);
     List<Offering> getStuOffering(Long id);
     void updateEnrolment(Long id, Section section);
