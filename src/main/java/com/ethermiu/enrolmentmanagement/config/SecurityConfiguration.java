@@ -25,7 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
+        auth.userDetailsService(userDetailsService);
         /*auth.jdbcAuthentication()
                 .dataSource(dataSource);
         */        /*.withUser(
@@ -63,9 +63,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
+                .csrf()
+                .disable()
                 .authorizeRequests()
-
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/faculty").hasAnyRole("FACULTY","ADMIN")
                 .antMatchers("/student").hasAnyRole("STUDENT","ADMIN")

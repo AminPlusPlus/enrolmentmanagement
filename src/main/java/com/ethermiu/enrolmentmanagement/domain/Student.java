@@ -18,6 +18,7 @@ public class Student extends Person {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     List<Address> addresses = new ArrayList<>();
+
     @JsonIgnore
     @ManyToMany(mappedBy = "studentList")
     private List<Section> sections;

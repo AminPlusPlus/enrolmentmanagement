@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 @RestController
 @RequestMapping(value = "/api/v1/sections")
-public class Sectioncontroller {
+public class SectionController {
     @Autowired
     private SectionService sectionService;
     @Autowired
