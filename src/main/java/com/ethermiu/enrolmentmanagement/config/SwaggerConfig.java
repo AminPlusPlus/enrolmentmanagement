@@ -29,7 +29,7 @@ public class SwaggerConfig {
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("MIU Enrollment Management REST API")
                 .description("Rest Api")
-                .contact(new Contact("Ether", "", ""))
+                .contact(new Contact("Ether", "___", "aabdullozoda@miu.edu"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.0.0")

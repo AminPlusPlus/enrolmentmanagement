@@ -38,14 +38,14 @@ public class Blockcontroller {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    @ApiOperation(value = "Get All")
-    @GetMapping(value = "/All")
+    @ApiOperation(value = "Get All Blocks")
+    @GetMapping(value = "/")
     public List<Block> getallBlocks(){
         return  blockservice.getallBlocks();
     }
 
     @ApiOperation(value = "Delete Block By Id")
-    @GetMapping("/{id}/delete")
+    @DeleteMapping(value = "{id}")
     public ResponseEntity<?> deleteById(@PathVariable("id") Long id){
         try {
             if(blockservice.isexistByid(id)){
@@ -65,7 +65,7 @@ public class Blockcontroller {
         }
     }
     @ApiOperation(value = "Delete Block By Code")
-    @GetMapping("/{code}/deletebycode")
+    @DeleteMapping(value = "{code}")
     public ResponseEntity<Block> deleteByCode(@PathVariable ("code") String code){
        try {
            blockservice.deleteByCode(code);

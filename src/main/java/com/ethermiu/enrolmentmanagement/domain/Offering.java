@@ -17,15 +17,13 @@ public class Offering {
     @GeneratedValue
     private int id;
     private String code;
-    //@JsonIgnore
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "block_id")
     private Block block;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private Course course;
-
-//    @OneToMany(mappedBy = "offering")
-//    List<Section> sectionList = new ArrayList<>();
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "offering")
+    List<Section> sectionList = new ArrayList<>();
 }
