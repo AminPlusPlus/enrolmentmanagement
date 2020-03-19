@@ -16,5 +16,4 @@ public class Faculty extends Person {
     private String title;
     @OneToMany(mappedBy = "faculty")
     private List<Section> sections = new ArrayList<>();
-
    }
