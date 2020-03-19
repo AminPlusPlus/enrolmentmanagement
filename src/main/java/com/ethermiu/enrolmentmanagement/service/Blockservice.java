@@ -1,16 +1,16 @@
 package com.ethermiu.enrolmentmanagement.service;
 
 import com.ethermiu.enrolmentmanagement.domain.Block;
-import com.ethermiu.enrolmentmanagement.repository.Blockrepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class Blockservice {
-    @Autowired
-    private Blockrepo blockrepo;
+import java.util.List;
 
-    public Block insertData(Block input) {
-        return blockrepo.save(input);
-    }
+
+public interface Blockservice {
+
+    public Block insertData(Block input);
+    public List<Block> getallBlocks();
+    public boolean deleteById(Long id);
+    public void deleteByCode(String code);
+
+    public Block update(Block block);
 }
