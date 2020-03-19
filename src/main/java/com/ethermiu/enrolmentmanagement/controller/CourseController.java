@@ -50,9 +50,10 @@ public class CourseController {
 
         Long courseId = course.getId();
         if(courseService.existById(courseId)) {
-            message.put("message","Course removed by id " + courseId);
+
             courseService.deleteById(courseId);
-            return new ResponseEntity(message,HttpStatus.BAD_REQUEST);
+            message.put("message","Course removed by id " + courseId);
+            return new ResponseEntity(message,HttpStatus.OK);
         }
         message.put("message","Course doesn't exist");
         return new ResponseEntity(message,HttpStatus.BAD_REQUEST);
@@ -66,10 +67,10 @@ public class CourseController {
         if(courseService.existById(id)) {
             courseService.deleteById(id);
             message.put("message","Course removed by id " + id);
-            return new ResponseEntity(message,HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(message,HttpStatus.OK);
         }
-        message.put("message","Course doesn't exist");
 
+        message.put("message","Course doesn't exist");
        return new ResponseEntity(message,HttpStatus.BAD_REQUEST);
     }
 

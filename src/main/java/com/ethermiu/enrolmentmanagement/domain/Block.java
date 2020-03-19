@@ -22,6 +22,11 @@ public class Block {
     private Date startDate;
     private Date endDate;
 
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "block",cascade = CascadeType.ALL)
+    private List<Offering> offeringList;
+    
+}
+
 
 
