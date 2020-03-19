@@ -74,8 +74,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-
         http.csrf().disable()
                 .authorizeRequests().antMatchers("/authenticate").permitAll()
                 .antMatchers("/api/v1/courses").hasAnyRole("STUDENT","ADMIN")
@@ -86,20 +84,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
-
-       /*http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/faculty").hasAnyRole("FACULTY","ADMIN")
-                .antMatchers("/student").hasAnyRole("STUDENT","ADMIN")
-                .antMatchers("/user").hasAnyRole("ADMIN","STUDENT","FACULTY","USER")
-                .antMatchers("/").permitAll()
-                .and().formLogin();
-*/
     }
 
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+        
     }
 }

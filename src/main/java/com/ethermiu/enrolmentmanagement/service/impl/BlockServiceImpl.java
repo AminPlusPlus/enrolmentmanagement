@@ -38,9 +38,12 @@ public class BlockServiceImpl implements Blockservice {
     }
 
     @Override
-    public boolean isexistByid(Long id) {
+    public boolean isExistById(Long id) {
         return blockrepo.existsById(id);
     }
 
-
+    @Override
+    public Block findById(Long id) {
+        return blockrepo.findById(id).get();
+    }
 }

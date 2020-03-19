@@ -1,10 +1,10 @@
 package com.ethermiu.enrolmentmanagement.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -19,14 +19,11 @@ public class Block {
     private String name;
     private String semester;
     private int blockSequenceNumber;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "block",cascade = CascadeType.ALL)
-    private List<Offering> offeringList;
-    
-}
-
+//    @OneToMany(mappedBy = "block")
+//    List<Offering> offeringList;
+    }
 
 
