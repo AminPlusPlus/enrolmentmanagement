@@ -2,6 +2,7 @@ package com.ethermiu.enrolmentmanagement.service.impl;
 
 import com.ethermiu.enrolmentmanagement.domain.Faculty;
 import com.ethermiu.enrolmentmanagement.domain.Student;
+
 import com.ethermiu.enrolmentmanagement.repository.FacultyRepository;
 import com.ethermiu.enrolmentmanagement.repository.StudentRepository;
 import com.ethermiu.enrolmentmanagement.service.FacultyService;
@@ -16,6 +17,8 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
+    Facultyrepo facultyrepo;
 
     @Autowired
     FacultyRepository facultyRepository;
@@ -28,6 +31,9 @@ public class FacultyServiceImpl implements FacultyService {
         return studentRepository.existsById(id);
     }
     @Override
+    public Faculty getFacultyById(Long id) {
+         return facultyrepo.findById(id).get();
+    }
     public List<Student> getAllStudent() {
         return studentRepository.findAll();
     }

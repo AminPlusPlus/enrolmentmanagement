@@ -1,17 +1,23 @@
 package com.ethermiu.enrolmentmanagement.service.impl;
 
+import com.ethermiu.enrolmentmanagement.domain.Faculty;
+import com.ethermiu.enrolmentmanagement.domain.Offering;
 import com.ethermiu.enrolmentmanagement.domain.Section;
 import com.ethermiu.enrolmentmanagement.repository.SectionRepository;
+import com.ethermiu.enrolmentmanagement.service.FacultyService;
+import com.ethermiu.enrolmentmanagement.service.OfferService;
 import com.ethermiu.enrolmentmanagement.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SectionServiceImpl implements SectionService {
     @Autowired
     private SectionRepository sectionRepository;
+
     @Override
     public List<Section> getAllSection() {
         return sectionRepository.findAll();
@@ -23,8 +29,9 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
-    public Section save(Section section) {
-        return sectionRepository.save(section);
+    public Section createSection(Faculty faculty, Offering offering) {
+       Section section=new Section(faculty,offering);
+       return sectionRepository.save(section);
     }
 
     @Override

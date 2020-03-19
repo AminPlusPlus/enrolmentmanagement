@@ -19,3 +19,4 @@ public interface FacultyService {
      public Faculty update(Faculty faculty);
      public void delete(Faculty faculty);
 }
+

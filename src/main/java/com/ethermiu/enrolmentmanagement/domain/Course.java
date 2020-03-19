@@ -25,6 +25,9 @@ public class Course {
     @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
     private List<Offering> offeringList;
 
+    public Long getId() {
+        return id;
+    }
 }
 
 

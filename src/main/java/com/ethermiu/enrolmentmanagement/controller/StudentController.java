@@ -48,7 +48,7 @@ public class StudentController {
 
     @ApiOperation(value = "get all students", notes = "" +
             "", response = ResponseEntity.class)
-    @GetMapping("/getAll")
+    @GetMapping
     public List<Student> getAll() {
         return service.getAllStudent();
     }
