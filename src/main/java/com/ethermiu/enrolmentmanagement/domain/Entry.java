@@ -2,11 +2,9 @@ package com.ethermiu.enrolmentmanagement.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 @Entity
 @Data
@@ -19,9 +17,5 @@ public class Entry {
     private Date startDate;
     private Date enrollmentStartDate;
     private Date enrollmentEndDate;
-
-//    @OneToMany(mappedBy = "entry")
-//    private List<Student> students = new ArrayList<>();
-
 
 }
