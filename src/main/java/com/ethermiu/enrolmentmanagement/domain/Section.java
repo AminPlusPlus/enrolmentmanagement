@@ -12,9 +12,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Table(name = "secton")
+
 public class Section {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
@@ -31,6 +32,10 @@ public class Section {
             inverseJoinColumns = { @JoinColumn(name = "student_id") } )
     List<Student> studentList = new ArrayList<Student>();
 
+    public Section(Faculty f,Offering of){
+        this.faculty=f;
+        this.offering=of;
+    }
     public  void addStudent(Student student){
         studentList.add(student);
     }
