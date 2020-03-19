@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Block {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String code;
     private String name;
@@ -24,6 +21,7 @@ public class Block {
     private int blockSequenceNumber;
     private Date startDate;
     private Date endDate;
+
     }
 
 

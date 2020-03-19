@@ -16,13 +16,13 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/v1/admin/blocks")
+@RequestMapping("api/v1/blocks")
 public class Blockcontroller {
     @Autowired
     private Blockservice blockservice;
 
     @ApiOperation(value = "Add Block")
-    @RequestMapping(value = "/block",method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
+    @PostMapping(produces = "application/json",consumes = "application/json")
     public ResponseEntity<Block> insertBlock(@RequestBody Block input){
         //First check that is admin token is valid or not
         //
@@ -39,14 +39,15 @@ public class Blockcontroller {
         }
     }
     @ApiOperation(value = "Get All Blocks")
-    @GetMapping(value = "/")
+    @GetMapping
     public List<Block> getallBlocks(){
         return  blockservice.getallBlocks();
     }
 
     @ApiOperation(value = "Delete Block By Id")
-    @DeleteMapping(value = "{id}")
-    public ResponseEntity<?> deleteById(@PathVariable("id") Long id){
+    @DeleteMapping(value="/id/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id){
+        System.out.println("method calloing in delete");
         try {
             if(blockservice.isexistByid(id)){
                 blockservice.deleteById(id);
@@ -65,14 +66,16 @@ public class Blockcontroller {
         }
     }
     @ApiOperation(value = "Delete Block By Code")
-    @DeleteMapping(value = "{code}")
-    public ResponseEntity<Block> deleteByCode(@PathVariable ("code") String code){
+    @DeleteMapping(value = "/code/{code}")
+    public ResponseEntity<?> deleteByCode(@PathVariable String code){
        try {
            blockservice.deleteByCode(code);
            return new ResponseEntity<Block>(HttpStatus.OK);
        }
        catch (Exception ex) {
-           return new ResponseEntity<Block>(HttpStatus.INTERNAL_SERVER_ERROR);
+           HashMap<String,String> map=new HashMap<>();
+           map.put("message","code does,nt exist");
+           return new ResponseEntity<HashMap<String,String>>(map,HttpStatus.BAD_REQUEST);
        }
 
     }
