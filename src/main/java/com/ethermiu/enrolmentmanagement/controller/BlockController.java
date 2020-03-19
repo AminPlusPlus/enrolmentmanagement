@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/blocks")
-public class Blockcontroller {
+public class BlockController {
     @Autowired
     private Blockservice blockservice;
 
@@ -49,7 +49,7 @@ public class Blockcontroller {
     public ResponseEntity<?> deleteById(@PathVariable Long id){
         System.out.println("method calloing in delete");
         try {
-            if(blockservice.isexistByid(id)){
+            if(blockservice.isExistById(id)){
                 blockservice.deleteById(id);
                 return new ResponseEntity<Block>(HttpStatus.OK);
             }
