@@ -18,10 +18,10 @@ public class Offering {
     @GeneratedValue
     private Long id;
     private String code;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "block_id")
     private Block block;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "course_id")
     private Course course;
     @JsonIgnore

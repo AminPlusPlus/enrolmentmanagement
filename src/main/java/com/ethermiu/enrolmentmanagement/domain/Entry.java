@@ -1,10 +1,14 @@
 package com.ethermiu.enrolmentmanagement.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
-import java.util.Date;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -12,10 +16,14 @@ import java.util.Date;
 public class Entry {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String name;
-    private Date startDate;
-    private Date enrollmentStartDate;
-    private Date enrollmentEndDate;
+    private LocalDate startDate;
+    private LocalDate enrollmentStartDate;
+    private LocalDate enrollmentEndDate;
+    @JsonIgnore
+    @OneToMany(mappedBy = "entry",cascade = CascadeType.PERSIST)
+    private List<Student> students = new ArrayList<>();
+
 
 }
