@@ -40,4 +40,7 @@ public class Section {
         studentList.add(student);
     }
 
+    public Offering getOffering() {
+        return offering;
+    }
 }

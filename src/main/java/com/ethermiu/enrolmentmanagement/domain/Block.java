@@ -1,5 +1,6 @@
 package com.ethermiu.enrolmentmanagement.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,8 +23,10 @@ public class Block {
     private LocalDate startDate;
     private LocalDate endDate;
 
-//    @OneToMany(mappedBy = "block")
-//    List<Offering> offeringList;
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "block")
+    List<Offering> offeringList;
+
+}
 
 

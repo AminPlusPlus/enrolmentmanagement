@@ -35,7 +35,26 @@ public class Student extends Person {
     private Entry entry;
 
     public void addSection(Section sec){
-        System.out.println("am here in add section");
         sections.add(sec);
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    public Entry getEntry() {
+        return entry;
     }
 }

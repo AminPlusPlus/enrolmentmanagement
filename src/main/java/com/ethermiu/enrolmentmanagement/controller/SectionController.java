@@ -57,7 +57,7 @@ public class SectionController {
     public ResponseEntity<?> AddSection(@RequestBody Sect sect) {
          //Fetching services of Faculty and Offerings
         try {
-            Faculty faculty = facultyService.getFacultyById(sect.getFacultyid());
+            Faculty faculty = facultyService.getFacultyById(sect.getFacultyid()).get();
             Offering offering = offerService.findById(sect.getOfferingid());
             if (faculty != null && offering != null) {
                 Section response = sectionService.createSection(faculty, offering);
@@ -76,10 +76,5 @@ public class SectionController {
         }
 
     }
-//
-//    @ApiOperation(value = "Section update")
-//    @PutMapping(consumes = "application/json", produces = "application/json")
-//    public Section update(@RequestBody Section section) {
-//        return sectionService.update(section);
-//    }
+
 }

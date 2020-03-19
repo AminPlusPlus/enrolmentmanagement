@@ -17,8 +17,6 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Autowired
     StudentRepository studentRepository;
-    @Autowired
-    Facultyrepo facultyrepo;
 
     @Autowired
     FacultyRepository facultyRepository;
@@ -30,10 +28,7 @@ public class FacultyServiceImpl implements FacultyService {
     public boolean studentExist(Long id) {
         return studentRepository.existsById(id);
     }
-    @Override
-    public Faculty getFacultyById(Long id) {
-         return facultyrepo.findById(id).get();
-    }
+
     public List<Student> getAllStudent() {
         return studentRepository.findAll();
     }
