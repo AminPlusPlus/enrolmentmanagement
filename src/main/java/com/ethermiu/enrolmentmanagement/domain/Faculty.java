@@ -18,5 +18,4 @@ public class Faculty extends Person {
     @JsonIgnore
     @OneToMany(mappedBy = "faculty")
     private List<Section> sections = new ArrayList<>();
-
    }

@@ -1,20 +1,20 @@
 package com.ethermiu.enrolmentmanagement.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 public class Block {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String code;
     private String name;
     private String semester;
@@ -22,9 +22,11 @@ public class Block {
     private Date startDate;
     private Date endDate;
 
-
-
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "block",cascade = CascadeType.ALL)
+    private List<Offering> offeringList;
+    
 }
+
 
 

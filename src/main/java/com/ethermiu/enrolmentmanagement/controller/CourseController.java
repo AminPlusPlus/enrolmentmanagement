@@ -27,7 +27,7 @@ public class CourseController {
 
     @ApiOperation(value = "Get course by id")
     @GetMapping(value = "/{id}")
-    public Course findAll(@PathVariable Long id) { ;
+    public Course findAll(@PathVariable Long id) {
         return courseService.findById(id);
     }
 
