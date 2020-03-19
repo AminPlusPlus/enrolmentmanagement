@@ -7,15 +7,16 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Offering {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String code;
     @ManyToOne
     @JoinColumn(name = "block_id")
@@ -25,5 +26,16 @@ public class Offering {
     private Course course;
     @JsonIgnore
     @OneToMany(mappedBy = "offering",cascade = CascadeType.ALL)
-    List<Section> sectionList = new ArrayList<>();
+    Set<Section> sectionList = new HashSet<>();
+
+
+    public Offering() {
+    }
+
+    public Offering(String code, Block block, Course course, Set<Section> section) {
+        this.code = code;
+        this.block = block;
+        this.course = course;
+        this.sectionList =  section;
+    }
 }
