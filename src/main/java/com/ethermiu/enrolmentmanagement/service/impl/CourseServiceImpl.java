@@ -3,12 +3,9 @@ package com.ethermiu.enrolmentmanagement.service.impl;
 import com.ethermiu.enrolmentmanagement.domain.Course;
 import com.ethermiu.enrolmentmanagement.repository.CourseRepository;
 import com.ethermiu.enrolmentmanagement.service.CourseService;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -29,11 +26,6 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course save(Course course) {
         return courseRepository.save(course);
-    }
-
-    @Override
-    public void remove(Course course) {
-         courseRepository.delete(course);
     }
 
     @Override

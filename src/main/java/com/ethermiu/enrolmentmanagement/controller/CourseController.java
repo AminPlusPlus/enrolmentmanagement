@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-
 
 @RestController
 @RequestMapping("/api/v1/courses")
@@ -30,8 +28,6 @@ public class CourseController {
     @ApiOperation(value = "Get course by id")
     @GetMapping(value = "/{id}")
     public Course findAll(@PathVariable Long id) { ;
-
-
         return courseService.findById(id);
     }
 
@@ -50,25 +46,31 @@ public class CourseController {
     @ApiOperation(value = "Delete Course")
     @DeleteMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Map<String,String>>  deleteCourse (@RequestBody Course course){
+        Map<String,String> message = new HashMap<>();
 
         Long courseId = course.getId();
-        if(courseService.existById(courseId))
+        if(courseService.existById(courseId)) {
+            message.put("message","Course removed by id " + courseId);
             courseService.deleteById(courseId);
-        Map<String,String> message = new HashMap<>();
-        message.put("message","User doesn't exist");
+            return new ResponseEntity(message,HttpStatus.BAD_REQUEST);
+        }
+        message.put("message","Course doesn't exist");
         return new ResponseEntity(message,HttpStatus.BAD_REQUEST);
     }
 
     @ApiOperation(value = "Delete Course By Id")
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Map<String,String>> deleteById(@PathVariable Long id) {
-        if(courseService.existById(id))
-           courseService.deleteById(id);
-
         Map<String,String> message = new HashMap<>();
-        message.put("message","User doesn't exist");
 
-     return new ResponseEntity(message,HttpStatus.BAD_REQUEST);
+        if(courseService.existById(id)) {
+            courseService.deleteById(id);
+            message.put("message","Course removed by id " + id);
+            return new ResponseEntity(message,HttpStatus.BAD_REQUEST);
+        }
+        message.put("message","Course doesn't exist");
+
+       return new ResponseEntity(message,HttpStatus.BAD_REQUEST);
     }
 
 
