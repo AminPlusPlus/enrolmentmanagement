@@ -22,6 +22,8 @@ public class Block {
     private Date startDate;
     private Date endDate;
 
+
+
 }
 
 

@@ -1,12 +1,12 @@
 package com.ethermiu.enrolmentmanagement.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Course {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String code;
     private String name;
@@ -24,6 +24,12 @@ public class Course {
     public Long getId() {
         return id;
     }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
+    private List<Offering> offeringList;
+
 }
+
 
 
