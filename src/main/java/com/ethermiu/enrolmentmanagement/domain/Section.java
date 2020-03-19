@@ -14,18 +14,19 @@ import java.util.List;
 public class Section {
     @Id
     @GeneratedValue
-    private Long id;
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private int id;
+    @ManyToOne
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "offering_id")
     private Offering offering;
-    @ManyToMany(mappedBy = "sections",cascade = CascadeType.ALL)
+
+    @ManyToMany
+    @JoinTable(name = "Enrollment",
+            joinColumns = { @JoinColumn(name = "section_id") },
+            inverseJoinColumns = { @JoinColumn(name = "student_id") } )
     List<Student> studentList = new ArrayList<>();
 
-    public Section(Faculty faculty, Offering offering) {
-        this.faculty = faculty;
-        this.offering = offering;
-    }
+
 }

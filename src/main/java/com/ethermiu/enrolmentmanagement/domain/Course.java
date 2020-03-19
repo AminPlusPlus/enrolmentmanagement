@@ -20,8 +20,8 @@ public class Course {
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "course")
-    List<Offering> offeringList;
+//    @OneToMany(mappedBy = "course")
+//    List<Offering> offeringList;
 
     }
 

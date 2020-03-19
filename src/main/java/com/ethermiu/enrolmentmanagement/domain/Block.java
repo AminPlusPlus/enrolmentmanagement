@@ -22,8 +22,8 @@ public class Block {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @OneToMany(mappedBy = "block")
-    List<Offering> offeringList;
+//    @OneToMany(mappedBy = "block")
+//    List<Offering> offeringList;
     }
 
 
