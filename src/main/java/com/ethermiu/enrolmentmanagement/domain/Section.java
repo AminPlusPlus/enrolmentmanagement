@@ -15,8 +15,8 @@ import java.util.List;
 
 public class Section {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "faculty_id")
