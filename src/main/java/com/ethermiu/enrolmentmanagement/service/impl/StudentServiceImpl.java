@@ -33,7 +33,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void addEnrolment(Long id, Long sectionId) {
-        System.out.println("am here");
         Student student = studentRepository.getOne(id);
         Section newSection = sectionrepositry.getOne((long)sectionId);
         int i = validateInput(student, newSection);
